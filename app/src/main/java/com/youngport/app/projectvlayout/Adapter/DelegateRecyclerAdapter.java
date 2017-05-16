@@ -41,7 +41,7 @@ public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 50;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

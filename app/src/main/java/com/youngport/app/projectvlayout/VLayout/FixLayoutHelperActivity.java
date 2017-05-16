@@ -47,6 +47,7 @@ public class FixLayoutHelperActivity extends Activity{
         linearLayoutHelper.setMargin(20,20,20,20);
         DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
         adapter.addAdapter(delegateRecyclerAdapter);
+        recyclerView.setAdapter(adapter);
     }
 
     public void initFixLayoutHelper(){
