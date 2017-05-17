@@ -32,6 +32,10 @@ public class AllActivity extends Activity{
     }
 
     public void initView(){
+//        RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+//        recyclerview.setRecycledViewPool(viewPool);
+//        viewPool.setMaxRecycledViews(0,10);
+
         adapters.add(LinearLayoutHelperActivity.init(this));
         adapters.add(ColumnLayoutHelperActivity.initColumnLayout(this));
         adapters.add(GridLayoutHelperActivity.init(this));
@@ -46,7 +50,7 @@ public class AllActivity extends Activity{
 
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
-        delegateAdapter = new DelegateAdapter(manager,true);
+        delegateAdapter = new DelegateAdapter(manager);
 
         delegateAdapter.setAdapters(adapters);
         recyclerview.setAdapter(delegateAdapter);
