@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -26,31 +27,28 @@ public class StickyLayoutHelperActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-
-        initLinearLayoutHelper();
-        initStickyLayoutHelper();
-    }
-
-    public void initLinearLayoutHelper(){
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         adapter =new DelegateAdapter(manager, true);
 
-        StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
-        adapter.addAdapter(new StickyLayoutAdapter(this,stickyLayoutHelper));
-
-        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        //设置间隔高度
-        linearLayoutHelper.setDividerHeight(5);
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
-    }
-
-    public void initStickyLayoutHelper(){
+        adapter.addAdapter(initStickyLayoutHelper(this));
+        adapter.addAdapter(initLinearLayoutHelper(this));
 
         recyclerView.setAdapter(adapter);
     }
 
+    public static DelegateRecyclerAdapter initLinearLayoutHelper(Context context){
+        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
+        //设置间隔高度
+        linearLayoutHelper.setDividerHeight(5);
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        return delegateRecyclerAdapter;
+    }
+
+    public static StickyLayoutAdapter initStickyLayoutHelper(Context context){
+        StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
+        return new StickyLayoutAdapter(context,stickyLayoutHelper);
+    }
 
 }

@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -20,28 +21,25 @@ import com.youngport.app.projectvlayout.R;
 public class ColumnLayoutHelperActivity extends Activity{
 
     private RecyclerView recyclerview;
-    private ColumnLayoutAdapter columnLayoutAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-
-        init();
-    }
-
-    public void init(){
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
-
         DelegateAdapter adapter =new DelegateAdapter(manager, true);
+
+        adapter.addAdapter(initColumnLayout(this));
+        recyclerview.setAdapter(adapter);
+    }
+
+    public static ColumnLayoutAdapter initColumnLayout(Context context){
         ColumnLayoutHelper columnLayoutHelper=new ColumnLayoutHelper();
         columnLayoutHelper.setWeights(new float[]{40,10,20,20,10});
-
-        columnLayoutAdapter=new ColumnLayoutAdapter(this,columnLayoutHelper);
-        adapter.addAdapter(columnLayoutAdapter);
-        recyclerview.setAdapter(adapter);
+        ColumnLayoutAdapter columnLayoutAdapter=new ColumnLayoutAdapter(context,columnLayoutHelper);
+        return columnLayoutAdapter;
     }
 
 

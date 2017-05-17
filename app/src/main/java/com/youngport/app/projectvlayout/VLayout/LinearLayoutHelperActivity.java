@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -16,22 +17,23 @@ import com.youngport.app.projectvlayout.R;
  */
 
 public class LinearLayoutHelperActivity extends Activity{
-    private RecyclerView recyclerview;
-    private DelegateRecyclerAdapter delegateRecyclerAdapter;
-
+    public static RecyclerView recyclerview;
+    public static DelegateRecyclerAdapter delegateRecyclerAdapter;
+    public DelegateAdapter adapter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-        init();
-    }
-
-    public void init(){
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
+        adapter =new DelegateAdapter(manager, true);
 
-        DelegateAdapter adapter =new DelegateAdapter(manager, true);
+        adapter.addAdapter(init(this));
+        recyclerview.setAdapter(adapter);
+    }
+
+    public static DelegateRecyclerAdapter init(Context context){
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
         //设置间隔高度
         linearLayoutHelper.setDividerHeight(5);
@@ -39,9 +41,8 @@ public class LinearLayoutHelperActivity extends Activity{
         linearLayoutHelper.setMarginBottom(20);
         //设置间距
         linearLayoutHelper.setMargin(20,20,20,20);
-        delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
-        recyclerview.setAdapter(adapter);
+        delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        return delegateRecyclerAdapter;
     }
 
 

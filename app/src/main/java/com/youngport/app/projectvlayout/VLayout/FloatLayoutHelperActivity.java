@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -27,30 +28,28 @@ public class FloatLayoutHelperActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-
-        initLinearLayoutHelper();
-        initFloatLayoutHelper();
-    }
-
-    public void initLinearLayoutHelper(){
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
-
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-
         adapter =new DelegateAdapter(manager, true);
-        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
-    }
 
-    public void initFloatLayoutHelper(){
-        FloatLayoutHelper floatLayoutHelper=new FloatLayoutHelper();
-        floatLayoutHelper.setDefaultLocation(20,250);
-        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(this,floatLayoutHelper);
-        adapter.addAdapter(fixLayoutAdapter);
+        adapter.addAdapter(initLinearLayout(this));
+        adapter.addAdapter(initFloatLayoutHelper(this));
 
         recyclerView.setAdapter(adapter);
+    }
+
+    public static DelegateRecyclerAdapter initLinearLayout(Context context){
+        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        return delegateRecyclerAdapter;
+    }
+
+    public static FixLayoutAdapter initFloatLayoutHelper(Context context){
+        FloatLayoutHelper floatLayoutHelper=new FloatLayoutHelper();
+        floatLayoutHelper.setDefaultLocation(20,250);
+        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,floatLayoutHelper);
+        return  fixLayoutAdapter;
     }
 
 

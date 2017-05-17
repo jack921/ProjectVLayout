@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -26,18 +27,17 @@ public class FixLayoutHelperActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-
-        initLinearLayoutHelper();
-        initFixLayoutHelper();
-    }
-
-    public void initLinearLayoutHelper(){
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
-
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-
         adapter =new DelegateAdapter(manager, true);
+
+        adapter.addAdapter(initLinearLayoutHelper(this));
+        adapter.addAdapter(initFixLayoutHelper(this));
+        recyclerView.setAdapter(adapter);
+    }
+
+    public static DelegateRecyclerAdapter initLinearLayoutHelper(Context context){
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
         //设置间隔高度
         linearLayoutHelper.setDividerHeight(5);
@@ -45,16 +45,14 @@ public class FixLayoutHelperActivity extends Activity{
         linearLayoutHelper.setMarginBottom(20);
         //设置间距
         linearLayoutHelper.setMargin(20,20,20,20);
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
-        recyclerView.setAdapter(adapter);
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        return delegateRecyclerAdapter;
     }
 
-    public void initFixLayoutHelper(){
+    public static FixLayoutAdapter initFixLayoutHelper(Context context){
         FixLayoutHelper fixLayoutHelper=new FixLayoutHelper(FixLayoutHelper.BOTTOM_LEFT, 200, 200);
-        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(this,fixLayoutHelper);
-        adapter.addAdapter(fixLayoutAdapter);
-        recyclerView.setAdapter(adapter);
+        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,fixLayoutHelper);
+        return fixLayoutAdapter;
     }
 
 }

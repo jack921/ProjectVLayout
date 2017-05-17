@@ -1,6 +1,7 @@
 package com.youngport.app.projectvlayout.VLayout;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -18,26 +19,25 @@ import com.youngport.app.projectvlayout.R;
 public class StaggeredGridLayoutHelperActivity extends Activity{
 
     private RecyclerView recyclerview;
-    private StaggeredAdapter staggeredAdapter;
+    private static StaggeredAdapter staggeredAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
-
-        init();
-    }
-
-    public void init(){
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
         DelegateAdapter adapter =new DelegateAdapter(manager, true);
 
-        StaggeredGridLayoutHelper staggeredGridLayoutHelper=new StaggeredGridLayoutHelper(3,20);
-        staggeredAdapter=new StaggeredAdapter(this,staggeredGridLayoutHelper);
-        adapter.addAdapter(staggeredAdapter);
+        adapter.addAdapter(init(this));
         recyclerview.setAdapter(adapter);
+    }
+
+    public static StaggeredAdapter init(Context context){
+        StaggeredGridLayoutHelper staggeredGridLayoutHelper=new StaggeredGridLayoutHelper(3,20);
+        staggeredAdapter=new StaggeredAdapter(context,staggeredGridLayoutHelper);
+        return staggeredAdapter;
     }
 
 

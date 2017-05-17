@@ -3,10 +3,7 @@ package com.youngport.app.projectvlayout;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
-
 import com.youngport.app.projectvlayout.VLayout.AllActivity;
 import com.youngport.app.projectvlayout.VLayout.ColumnLayoutHelperActivity;
 import com.youngport.app.projectvlayout.VLayout.FixLayoutHelperActivity;
