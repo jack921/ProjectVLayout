@@ -9,6 +9,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.youngport.app.projectvlayout.Adapter.ColumnLayoutAdapter;
 import com.youngport.app.projectvlayout.Adapter.DelegateRecyclerAdapter;
 import com.youngport.app.projectvlayout.R;
 
@@ -19,7 +20,7 @@ import com.youngport.app.projectvlayout.R;
 public class ColumnLayoutHelperActivity extends Activity{
 
     private RecyclerView recyclerview;
-    private DelegateRecyclerAdapter delegateRecyclerAdapter;
+    private ColumnLayoutAdapter columnLayoutAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,13 +37,10 @@ public class ColumnLayoutHelperActivity extends Activity{
 
         DelegateAdapter adapter =new DelegateAdapter(manager, true);
         ColumnLayoutHelper columnLayoutHelper=new ColumnLayoutHelper();
+        columnLayoutHelper.setWeights(new float[]{40,10,20,20,10});
 
-        //设置布局底部与下个布局的间隔
-        columnLayoutHelper.setMarginBottom(20);
-        //设置间距
-        columnLayoutHelper.setMargin(20,20,20,20);
-        delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,columnLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
+        columnLayoutAdapter=new ColumnLayoutAdapter(this,columnLayoutHelper);
+        adapter.addAdapter(columnLayoutAdapter);
         recyclerview.setAdapter(adapter);
     }
 

@@ -10,6 +10,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.OnePlusNLayoutHelper;
 import com.youngport.app.projectvlayout.Adapter.DelegateRecyclerAdapter;
+import com.youngport.app.projectvlayout.Adapter.OnePlusNLayoutAdapter;
 import com.youngport.app.projectvlayout.R;
 
 /**
@@ -19,7 +20,7 @@ import com.youngport.app.projectvlayout.R;
 public class OnePlusNLayoutHelperActivity extends Activity{
 
     private RecyclerView recyclerview;
-    private DelegateRecyclerAdapter delegateRecyclerAdapter;
+    private OnePlusNLayoutAdapter onePlusNLayoutAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,11 +38,9 @@ public class OnePlusNLayoutHelperActivity extends Activity{
         DelegateAdapter adapter =new DelegateAdapter(manager, true);
         OnePlusNLayoutHelper onePlusNLayoutHelper=new OnePlusNLayoutHelper();
         //设置布局底部与下个布局的间隔
-        onePlusNLayoutHelper.setMarginBottom(20);
-        //设置间距
-        onePlusNLayoutHelper.setMargin(20,20,20,20);
-        delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,onePlusNLayoutHelper);
-        adapter.addAdapter(delegateRecyclerAdapter);
+        onePlusNLayoutHelper.setMarginBottom(5);
+        onePlusNLayoutAdapter=new OnePlusNLayoutAdapter(this,onePlusNLayoutHelper);
+        adapter.addAdapter(onePlusNLayoutAdapter);
         recyclerview.setAdapter(adapter);
     }
 

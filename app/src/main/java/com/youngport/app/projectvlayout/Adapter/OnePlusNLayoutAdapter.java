@@ -12,15 +12,15 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.youngport.app.projectvlayout.R;
 
 /**
- * Created by admin on 2017/5/16.
+ * Created by admin on 2017/5/17.
  */
 
-public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
+public class OnePlusNLayoutAdapter extends DelegateAdapter.Adapter{
     public Context context;
     private LayoutHelper helper;
     private LayoutInflater inflater;
 
-    public DelegateRecyclerAdapter(Context context,LayoutHelper helper){
+    public OnePlusNLayoutAdapter(Context context,LayoutHelper helper){
         this.inflater = LayoutInflater.from(context);
         this.helper = helper;
         this.context=context;
@@ -41,7 +41,7 @@ public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
 
     @Override
     public int getItemCount() {
-        return 30;
+        return 5;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -51,5 +51,4 @@ public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
             name=(TextView)itemView.findViewById(R.id.item_name);
         }
     }
-
 }

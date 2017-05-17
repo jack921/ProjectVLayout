@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.alibaba.android.vlayout.layout.ScrollFixLayoutHelper;
 import com.youngport.app.projectvlayout.Adapter.DelegateRecyclerAdapter;
+import com.youngport.app.projectvlayout.Adapter.FixLayoutAdapter;
 import com.youngport.app.projectvlayout.R;
 
 /**
@@ -18,6 +20,7 @@ import com.youngport.app.projectvlayout.R;
 public class ScrollFixLayoutHelperActivity extends Activity{
     private RecyclerView recyclerview;
     private DelegateRecyclerAdapter delegateRecyclerAdapter;
+    private DelegateAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -25,23 +28,35 @@ public class ScrollFixLayoutHelperActivity extends Activity{
         setContentView(R.layout.layout_main);
 
         init();
+        initScrollFixLayout();
     }
 
     public void init(){
         recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
         VirtualLayoutManager manager = new VirtualLayoutManager(this);
         recyclerview.setLayoutManager(manager);
+        adapter =new DelegateAdapter(manager, true);
 
-        DelegateAdapter adapter =new DelegateAdapter(manager, true);
+        ScrollFixLayoutHelper scrollFixLayoutHelper = new ScrollFixLayoutHelper(15,15);
+        //show_always:总是显示
+        //show_on_enter:当页面滚动到这个视图的位置的时候，才显示
+        //show_on_leave:当页面滚出这个视图的位置的时候显示
+        scrollFixLayoutHelper.setShowType(ScrollFixLayoutHelper.SHOW_ON_ENTER);
+        adapter.addAdapter(new FixLayoutAdapter(this, scrollFixLayoutHelper));
+
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        //设置间隔高度
-        linearLayoutHelper.setDividerHeight(5);
-        //设置布局底部与下个布局的间隔
-        linearLayoutHelper.setMarginBottom(20);
-        //设置间距
-        linearLayoutHelper.setMargin(20,20,20,20);
         delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
         adapter.addAdapter(delegateRecyclerAdapter);
+    }
+
+    public void initScrollFixLayout(){
+//        ScrollFixLayoutHelper scrollFixLayoutHelper = new ScrollFixLayoutHelper(ScrollFixLayoutHelper.TOP_LEFT,15,15);
+//        //show_always:总是显示
+//        //show_on_enter:当页面滚动到这个视图的位置的时候，才显示
+//        //show_on_leave:当页面滚出这个视图的位置的时候显示
+//        scrollFixLayoutHelper.setShowType(ScrollFixLayoutHelper.SHOW_ON_ENTER);
+//        adapter.addAdapter(new FixLayoutAdapter(this, scrollFixLayoutHelper));
+
         recyclerview.setAdapter(adapter);
     }
 

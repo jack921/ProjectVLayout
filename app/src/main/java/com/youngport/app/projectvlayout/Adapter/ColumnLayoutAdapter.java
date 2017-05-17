@@ -12,16 +12,16 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.youngport.app.projectvlayout.R;
 
 /**
- * Created by admin on 2017/5/16.
+ * Created by admin on 2017/5/17.
  */
 
-public class FixLayoutAdapter extends DelegateAdapter.Adapter {
+public class ColumnLayoutAdapter extends DelegateAdapter.Adapter {
 
     private Context context;
     private LayoutHelper helper;
     private LayoutInflater inflater;
 
-    public FixLayoutAdapter(Context context, LayoutHelper helper) {
+    public ColumnLayoutAdapter(Context context, LayoutHelper helper) {
         this.context = context;
         this.helper = helper;
         this.inflater = LayoutInflater.from(context);
@@ -33,13 +33,16 @@ public class FixLayoutAdapter extends DelegateAdapter.Adapter {
     }
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewholder(inflater.inflate(R.layout.layout_text,null));
+        return new MyViewholder(inflater.inflate(R.layout.layout_text, parent, false));
     }
 
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        MyViewholder myViewholder=(MyViewholder)holder;
+        myViewholder.textView.setText(position+"");
+    }
 
     public int getItemCount() {
-        return 1;
+        return 5;
     }
 
     public class MyViewholder extends RecyclerView.ViewHolder {
@@ -50,5 +53,5 @@ public class FixLayoutAdapter extends DelegateAdapter.Adapter {
         }
     }
 
-}
 
+}

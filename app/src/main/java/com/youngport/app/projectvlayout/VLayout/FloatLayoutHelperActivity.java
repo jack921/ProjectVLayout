@@ -40,20 +40,16 @@ public class FloatLayoutHelperActivity extends Activity{
 
         adapter =new DelegateAdapter(manager, true);
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        //设置间隔高度
-        linearLayoutHelper.setDividerHeight(5);
-        //设置布局底部与下个布局的间隔
-        linearLayoutHelper.setMarginBottom(20);
-        //设置间距
-        linearLayoutHelper.setMargin(20,20,20,20);
         DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(this,linearLayoutHelper);
         adapter.addAdapter(delegateRecyclerAdapter);
     }
 
     public void initFloatLayoutHelper(){
         FloatLayoutHelper floatLayoutHelper=new FloatLayoutHelper();
+        floatLayoutHelper.setDefaultLocation(20,250);
         FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(this,floatLayoutHelper);
         adapter.addAdapter(fixLayoutAdapter);
+
         recyclerView.setAdapter(adapter);
     }
 
