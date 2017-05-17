@@ -26,18 +26,18 @@ public class AllActivity extends Activity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_main);
+        recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
 
         initView();
     }
 
     public void initView(){
-        recyclerview=(RecyclerView)findViewById(R.id.recyclerview);
-
         adapters.add(LinearLayoutHelperActivity.init(this));
+        adapters.add(ColumnLayoutHelperActivity.initColumnLayout(this));
         adapters.add(GridLayoutHelperActivity.init(this));
+        adapters.add(FloatLayoutHelperActivity.initFloatLayoutHelper(this));
         adapters.add(FixLayoutHelperActivity.initFixLayoutHelper(this));
         adapters.add(ScrollFixLayoutHelperActivity.initScrollFixLayout(this));
-        adapters.add(ColumnLayoutHelperActivity.initColumnLayout(this));
         adapters.add(SingleLayoutHelperActivity.initSingleLayout(this));
         adapters.add(OnePlusNLayoutHelperActivity.initOnePlusNLayout(this));
         adapters.add(FloatLayoutHelperActivity.initFloatLayoutHelper(this));

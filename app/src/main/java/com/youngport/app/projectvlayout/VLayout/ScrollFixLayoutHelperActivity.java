@@ -49,7 +49,7 @@ public class ScrollFixLayoutHelperActivity extends Activity{
         //show_on_enter:当页面滚动到这个视图的位置的时候，才显示
         //show_on_leave:当页面滚出这个视图的位置的时候显示
         scrollFixLayoutHelper.setShowType(ScrollFixLayoutHelper.SHOW_ON_ENTER);
-        return new FixLayoutAdapter(context, scrollFixLayoutHelper);
+        return new FixLayoutAdapter(context, scrollFixLayoutHelper,"scrollfixlayouthelper");
     }
 
 }

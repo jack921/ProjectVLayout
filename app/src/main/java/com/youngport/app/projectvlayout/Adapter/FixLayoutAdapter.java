@@ -20,11 +20,13 @@ public class FixLayoutAdapter extends DelegateAdapter.Adapter {
     private Context context;
     private LayoutHelper helper;
     private LayoutInflater inflater;
+    private String text;
 
-    public FixLayoutAdapter(Context context, LayoutHelper helper) {
+    public FixLayoutAdapter(Context context, LayoutHelper helper,String text) {
         this.context = context;
         this.helper = helper;
         this.inflater = LayoutInflater.from(context);
+        this.text=text;
     }
 
     @Override
@@ -36,7 +38,10 @@ public class FixLayoutAdapter extends DelegateAdapter.Adapter {
         return new MyViewholder(inflater.inflate(R.layout.layout_text,null));
     }
 
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        MyViewholder myViewholder=(MyViewholder)holder;
+        myViewholder.textView.setText(text);
+    }
 
     public int getItemCount() {
         return 1;

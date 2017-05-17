@@ -48,7 +48,7 @@ public class FloatLayoutHelperActivity extends Activity{
     public static FixLayoutAdapter initFloatLayoutHelper(Context context){
         FloatLayoutHelper floatLayoutHelper=new FloatLayoutHelper();
         floatLayoutHelper.setDefaultLocation(20,250);
-        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,floatLayoutHelper);
+        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,floatLayoutHelper,"floatlayouthelper");
         return  fixLayoutAdapter;
     }
 

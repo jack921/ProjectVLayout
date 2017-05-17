@@ -51,7 +51,7 @@ public class FixLayoutHelperActivity extends Activity{
 
     public static FixLayoutAdapter initFixLayoutHelper(Context context){
         FixLayoutHelper fixLayoutHelper=new FixLayoutHelper(FixLayoutHelper.BOTTOM_LEFT, 200, 200);
-        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,fixLayoutHelper);
+        FixLayoutAdapter fixLayoutAdapter=new FixLayoutAdapter(context,fixLayoutHelper,"fixlayouthelp");
         return fixLayoutAdapter;
     }
 
