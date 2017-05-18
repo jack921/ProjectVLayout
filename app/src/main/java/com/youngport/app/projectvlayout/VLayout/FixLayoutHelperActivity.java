@@ -45,7 +45,7 @@ public class FixLayoutHelperActivity extends Activity{
         linearLayoutHelper.setMarginBottom(20);
         //设置间距
         linearLayoutHelper.setMargin(20,20,20,20);
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper,"FixLayoutHelper");
         return delegateRecyclerAdapter;
     }
 

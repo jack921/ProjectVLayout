@@ -41,7 +41,7 @@ public class FloatLayoutHelperActivity extends Activity{
 
     public static DelegateRecyclerAdapter initLinearLayout(Context context){
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper,"FloatLayoutHelper");
         return delegateRecyclerAdapter;
     }
 

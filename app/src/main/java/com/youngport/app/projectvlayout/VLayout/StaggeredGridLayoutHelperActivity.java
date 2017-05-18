@@ -36,7 +36,7 @@ public class StaggeredGridLayoutHelperActivity extends Activity{
 
     public static StaggeredAdapter init(Context context){
         StaggeredGridLayoutHelper staggeredGridLayoutHelper=new StaggeredGridLayoutHelper(3,20);
-        staggeredAdapter=new StaggeredAdapter(context,staggeredGridLayoutHelper);
+        staggeredAdapter=new StaggeredAdapter(context,staggeredGridLayoutHelper,"StaggeredGridLayoutHelper");
         return staggeredAdapter;
     }
 

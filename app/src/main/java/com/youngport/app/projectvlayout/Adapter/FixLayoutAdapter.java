@@ -39,6 +39,11 @@ public class FixLayoutAdapter extends DelegateAdapter.Adapter {
     }
 
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if(position%2==0){
+            holder.itemView.setBackgroundColor(0xaa3F51B5);
+        }else{
+            holder.itemView.setBackgroundColor(0xccFF4081);
+        }
         MyViewholder myViewholder=(MyViewholder)holder;
         myViewholder.textView.setText(text);
     }

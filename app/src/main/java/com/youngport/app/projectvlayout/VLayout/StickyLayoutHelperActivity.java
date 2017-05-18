@@ -42,7 +42,7 @@ public class StickyLayoutHelperActivity extends Activity{
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
         //设置间隔高度
         linearLayoutHelper.setDividerHeight(5);
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper,"StickyLayoutHelper");
         return delegateRecyclerAdapter;
     }
 

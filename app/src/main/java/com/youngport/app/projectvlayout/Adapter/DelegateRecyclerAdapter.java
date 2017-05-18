@@ -19,11 +19,13 @@ public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
     public Context context;
     private LayoutHelper helper;
     private LayoutInflater inflater;
+    private String name;
 
-    public DelegateRecyclerAdapter(Context context,LayoutHelper helper){
+    public DelegateRecyclerAdapter(Context context,LayoutHelper helper,String name){
         this.inflater = LayoutInflater.from(context);
         this.helper = helper;
         this.context=context;
+        this.name=name;
     }
 
     @Override
@@ -37,11 +39,19 @@ public class DelegateRecyclerAdapter extends DelegateAdapter.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            if(position%2==0){
+                holder.itemView.setBackgroundColor(0xaa3F51B5);
+            }else{
+                holder.itemView.setBackgroundColor(0xccFF4081);
+            }
+        MyViewHolder myViewHolder=(MyViewHolder)holder;
+        myViewHolder.name.setText(name+position+"");
+    }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 9;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{

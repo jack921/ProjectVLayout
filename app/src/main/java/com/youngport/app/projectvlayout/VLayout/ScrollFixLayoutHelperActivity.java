@@ -39,7 +39,7 @@ public class ScrollFixLayoutHelperActivity extends Activity{
 
     public DelegateRecyclerAdapter initLinearLayout(Context context){
         LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
-        delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper);
+        delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper,"ScrollFixLayoutHelper");
         return delegateRecyclerAdapter;
     }
 

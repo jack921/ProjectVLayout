@@ -11,6 +11,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.ColumnLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.youngport.app.projectvlayout.Adapter.DelegateRecyclerAdapter;
+import com.youngport.app.projectvlayout.Adapter.SingleLayoutAdapter;
 import com.youngport.app.projectvlayout.R;
 
 /**
@@ -34,14 +35,12 @@ public class SingleLayoutHelperActivity extends Activity{
         recyclerview.setAdapter(adapter);
     }
 
-    public static DelegateRecyclerAdapter initSingleLayout(Context context){
+    public static SingleLayoutAdapter initSingleLayout(Context context){
         SingleLayoutHelper singleLayoutHelper=new SingleLayoutHelper();
-        //设置布局底部与下个布局的间隔
-        singleLayoutHelper.setMarginBottom(20);
         //设置间距
         singleLayoutHelper.setMargin(20,20,20,20);
-        DelegateRecyclerAdapter delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,singleLayoutHelper);
-        return delegateRecyclerAdapter;
+        SingleLayoutAdapter singleLayoutAdapter=new SingleLayoutAdapter(context,singleLayoutHelper,"SingleLayoutHelper");
+        return singleLayoutAdapter;
     }
 
 

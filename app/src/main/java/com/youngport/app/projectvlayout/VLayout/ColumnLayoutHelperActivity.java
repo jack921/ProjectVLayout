@@ -37,8 +37,9 @@ public class ColumnLayoutHelperActivity extends Activity{
 
     public static ColumnLayoutAdapter initColumnLayout(Context context){
         ColumnLayoutHelper columnLayoutHelper=new ColumnLayoutHelper();
-        columnLayoutHelper.setWeights(new float[]{40,10,20,20,10});
-        ColumnLayoutAdapter columnLayoutAdapter=new ColumnLayoutAdapter(context,columnLayoutHelper);
+        columnLayoutHelper.setWeights(new float[]{20,20,20,20,20});
+        columnLayoutHelper.setMarginBottom(20);
+        ColumnLayoutAdapter columnLayoutAdapter=new ColumnLayoutAdapter(context,columnLayoutHelper,"ColumnLayoutHelper");
         return columnLayoutAdapter;
     }
 

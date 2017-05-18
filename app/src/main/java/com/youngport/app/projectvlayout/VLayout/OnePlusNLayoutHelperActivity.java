@@ -32,7 +32,6 @@ public class OnePlusNLayoutHelperActivity extends Activity{
         DelegateAdapter adapter =new DelegateAdapter(manager, true);
 
         initOnePlusNLayout(this);
-
         adapter.addAdapter(initOnePlusNLayout(this));
         recyclerview.setAdapter(adapter);
     }
@@ -40,8 +39,8 @@ public class OnePlusNLayoutHelperActivity extends Activity{
     public static OnePlusNLayoutAdapter initOnePlusNLayout(Context context){
         OnePlusNLayoutHelper onePlusNLayoutHelper=new OnePlusNLayoutHelper();
         //设置布局底部与下个布局的间隔
-        onePlusNLayoutHelper.setMarginBottom(5);
-        OnePlusNLayoutAdapter onePlusNLayoutAdapter=new OnePlusNLayoutAdapter(context,onePlusNLayoutHelper);
+        onePlusNLayoutHelper.setMarginBottom(20);
+        OnePlusNLayoutAdapter onePlusNLayoutAdapter=new OnePlusNLayoutAdapter(context,onePlusNLayoutHelper,"OnePlusNLayoutHelper");
         return onePlusNLayoutAdapter;
     }
 

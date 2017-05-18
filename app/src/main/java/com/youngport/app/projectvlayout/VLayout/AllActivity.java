@@ -32,14 +32,13 @@ public class AllActivity extends Activity{
     }
 
     public void initView(){
-//        RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-//        recyclerview.setRecycledViewPool(viewPool);
-//        viewPool.setMaxRecycledViews(0,10);
+        RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
+        recyclerview.setRecycledViewPool(viewPool);
+        viewPool.setMaxRecycledViews(0,10);
 
         adapters.add(LinearLayoutHelperActivity.init(this));
         adapters.add(ColumnLayoutHelperActivity.initColumnLayout(this));
         adapters.add(GridLayoutHelperActivity.init(this));
-        adapters.add(FloatLayoutHelperActivity.initFloatLayoutHelper(this));
         adapters.add(FixLayoutHelperActivity.initFixLayoutHelper(this));
         adapters.add(ScrollFixLayoutHelperActivity.initScrollFixLayout(this));
         adapters.add(SingleLayoutHelperActivity.initSingleLayout(this));

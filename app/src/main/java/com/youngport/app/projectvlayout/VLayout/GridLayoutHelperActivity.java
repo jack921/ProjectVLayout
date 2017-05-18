@@ -37,18 +37,18 @@ public class GridLayoutHelperActivity extends Activity{
 
     public static DelegateRecyclerAdapter init(Context context){
         GridLayoutHelper gridLayoutHelper=new GridLayoutHelper(4);
-//        gridLayoutHelper.setSpanSizeLookup(new GridLayoutHelper.SpanSizeLookup() {
-//            @Override
-//            public int getSpanSize(int position) {
-//                if (position > 13) {
-//                    return 2;
-//                }else {
-//                    return 1;
-//                }
-//            }
-//        });
+        gridLayoutHelper.setSpanSizeLookup(new GridLayoutHelper.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if (position >5) {
+                    return 2;
+                }else {
+                    return 1;
+                }
+            }
+        });
         gridLayoutHelper.setAutoExpand(false);
-        delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,gridLayoutHelper);
+        delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,gridLayoutHelper,"GridLayoutHelper");
         return delegateRecyclerAdapter;
     }
 
