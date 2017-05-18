@@ -44,6 +44,4 @@ public class LinearLayoutHelperActivity extends Activity{
         delegateRecyclerAdapter=new DelegateRecyclerAdapter(context,linearLayoutHelper,"LinearLayoutHelper");
         return delegateRecyclerAdapter;
     }
-
-
 }
